@@ -40,7 +40,9 @@ COPY extended.php.ini /usr/local/etc/php/conf.d/extended.php.ini
 # Change base backend port to 8080 to avoid privilege ports when running user is not root
 RUN sed -i 's/Listen\ 80/Listen\ 8080/g' /etc/apache2/ports.conf
 RUN sed -i 's/\*\:80/\*\:8080/g' /etc/apache2/sites-enabled/000-default.conf
-RUN sed -i 's/\/var\/www\/html/\/data\/public/g' /etc/apache2/sites-enabled/000-default.conf
+RUN sed -i 's/\/var\/www\/html/\/data\/public\n<Directory \/data\/public>\nAllowOverride All\nRequire all granted\n<\/Directory>/g' \
+    /etc/apache2/sites-enabled/000-default.conf
+
 EXPOSE 8080
 
 
