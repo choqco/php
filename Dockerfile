@@ -24,10 +24,10 @@ RUN ["/bin/bash", "-c", "docker-php-ext-configure gd --with-freetype-dir=/usr/in
 RUN docker-php-ext-install -j$(nproc) gd
 
 
-# PHPUnit
+# Composer
 RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/master/web/installer -O - -q | php -- --quiet
-RUN chmod +x phpunit.phar
-RUN mv phpunit.phar /usr/local/bin/phpunit
+RUN chmod +x composer.phar
+RUN mv composer.phar /usr/local/bin/composer
 
 
 # Set workspace & extended INI for flexible config (eg. file upload limit)
