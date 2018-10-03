@@ -23,6 +23,8 @@ RUN docker-php-ext-install -j$(nproc) zip mysqli pdo_mysql
 RUN ["/bin/bash", "-c", "docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/"]
 RUN docker-php-ext-install -j$(nproc) gd
 
+# Install PHP extensions
+RUN a2enmod rewrite && a2enmod headers
 
 # Composer
 RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/master/web/installer -O - -q | php -- --quiet
