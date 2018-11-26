@@ -31,6 +31,9 @@ RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/master/web/i
 RUN chmod +x composer.phar
 RUN mv composer.phar /usr/local/bin/composer
 
+RUN set -e \
+    && composer global require hirak/prestissimo \
+    && composer clear-cache
 
 # Set workspace & extended INI for flexible config (eg. file upload limit)
 COPY . /data
@@ -42,7 +45,7 @@ COPY extended.php.ini /usr/local/etc/php/conf.d/extended.php.ini
 # Change base backend port to 8080 to avoid privilege ports when running user is not root
 RUN sed -i 's/Listen\ 80/Listen\ 8080/g' /etc/apache2/ports.conf
 RUN sed -i 's/\*\:80/\*\:8080/g' /etc/apache2/sites-enabled/000-default.conf
-RUN sed -i 's/\/var\/www\/html/\/data\/public\n<Directory \/data\/public>\nAllowOverride All\nRequire all granted\n<\/Directory>/g' \
+RUN sed -i 's/\/var\/www\/html/\/data\/public\n<Directory \/data\/public>\nAllowOverride All\nRequire all granted\n<\/Directory>\nServerName example.com/g' \
     /etc/apache2/sites-enabled/000-default.conf
 
 EXPOSE 8080
