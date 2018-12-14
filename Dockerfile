@@ -1,5 +1,5 @@
 # Keep update latest PHP official image by specific minor version for newer builds
-FROM php:7.2.10-apache-stretch
+FROM php:7.2.13-apache-stretch
 
 # System dependencies
 RUN apt-get update && apt-get install -y \
@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
         unzip \
         wget \
         zlib1g-dev \
+        ssh-client \
     --no-install-recommends \
     && rm -r /var/lib/apt/lists/*
 
