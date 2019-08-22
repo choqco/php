@@ -1,20 +1,21 @@
 # Keep update latest PHP official image by specific minor version for newer builds
-FROM php:7.2.13-apache-stretch
+FROM php:7.2.21-apache-stretch
 
 # System dependencies
 RUN apt-get update && apt-get install -y \
         gettext \
         git \
-        locales \
+        gosu \
         libfreetype6 \
         libfreetype6-dev \
         libjpeg62 \
         libjpeg62-turbo-dev \
         libpng-dev \
+        locales \
+        ssh-client \
         unzip \
         wget \
         zlib1g-dev \
-        ssh-client \
     --no-install-recommends \
     && rm -r /var/lib/apt/lists/*
 
