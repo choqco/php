@@ -13,9 +13,8 @@ RUN apt-get update && apt-get install -y \
         libpng-dev \
         locales \
         ssh-client \
-        unzip \
         wget \
-        zlib1g-dev \
+        libzip-dev \
     --no-install-recommends \
     && rm -r /var/lib/apt/lists/*
 
