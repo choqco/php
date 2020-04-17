@@ -1,5 +1,5 @@
 # Keep update latest PHP official image by specific minor version for newer builds
-FROM php:7.3.15-apache-stretch
+FROM php:7.3.17-apache-stretch
 
 # System dependencies
 RUN apt-get update && apt-get install -y \
