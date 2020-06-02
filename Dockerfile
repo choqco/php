@@ -26,7 +26,7 @@ RUN ["/bin/bash", "-c", "docker-php-ext-configure gd --with-freetype-dir=/usr/in
 RUN docker-php-ext-install -j$(nproc) gd
 
 # Install PHP extensions
-RUN a2enmod rewrite && a2enmod headers
+RUN a2enmod rewrite headers deflate
 
 # Composer
 RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/master/web/installer -O - -q | php -- --quiet
